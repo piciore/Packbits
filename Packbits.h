@@ -206,6 +206,7 @@ public:
 				}
 				else {
 					buffer.push_back(current);
+					int size = buffer.size();
 					if (buffer.size() == 129) {
 						buffer.pop_back();
 						writeBuffer();
@@ -237,6 +238,11 @@ public:
 				break;
 			case 'd':
 				if (current == prec) {
+					buffer.pop_back();
+					buffer.pop_back();
+					buffer.pop_back();
+					writeBuffer();
+					runLength = 2;
 					writeRun(suspendedChar);
 					runLength = 2;
 					state = 'r';
